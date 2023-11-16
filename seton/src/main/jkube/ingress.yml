@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: seton-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /seton
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /seton
+            pathType: Prefix
+            backend:
+              service:
+                name: seton
+                port:
+                  number: 8080
