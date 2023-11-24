@@ -32,3 +32,8 @@ nvm install 16
 yarn install
 yarn start
 ```
+
+## Funcionalidades
+Url para acceder a la parte de admin: http://localhost:3000/#/admin
+
+u: admin, c: admin

@@ -139,4 +139,19 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	/*
+	 * Login.
+	 *
+	 * @param userName the user name
+	 * @return true if the user exists; false otherwise
+	 */
+	public Boolean existsByUsername(String userName) {
+		Optional<Users> user = userDao.findByUserName(userName);
+
+		if (!user.isPresent()) {
+			return false;
+		}
+		return true;
+	}
+
 }

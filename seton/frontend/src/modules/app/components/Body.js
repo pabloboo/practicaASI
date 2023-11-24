@@ -2,15 +2,21 @@ import React from "react";
 
 import { Route, Routes } from "react-router-dom";
 
-import Home from "./Home";
 import Test from "./Test";
+import RegisterUser from "./RegisterUser";
+import Login from "./Login";
+import AdminHome from "./Admin/adminHome";
+import AdminLogin from "./Admin/adminLogin";
 
 const Body = () => {
   return (
     <Routes>
       <Route path="/">
-        <Route index exact element={<Home />} />
+        <Route index exact element={<Login />} />
         <Route path="/test" element={<Test />} />
+        <Route path="/admin" element={<AdminLogin />} />
+        <Route path="/admin/home" element={<AdminHome />} />
+        <Route path="/admin/registerUser" element={<RegisterUser />} />
       </Route>
     </Routes>
   );
