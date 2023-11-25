@@ -15,13 +15,15 @@ java --version
 Ejecutar el backend:
 
 ```bash
+cd seton/
+mvn clean install
 mvn spring-boot:run
 ```
 
 Configuración frontend:
 
 ```bash
-cd frontend
+cd seton/frontend/
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
 
 export NVM_DIR="$HOME/.nvm"
@@ -33,6 +35,17 @@ yarn install
 yarn start
 ```
 
+## Diagrama base de datos
+![](db.png)
+
+- Users: administrador o profesor/estudiante.
+- Teacher: profesor.
+- Student: estudiante.
+- Language: idioma.
+- Schedule: horario.
+- Class: clase.
+- ClassSchedule: relación entre clase y horario.
+- Inscription: relación entre clase y estudiante.
 ## Funcionalidades
 Url para acceder a la parte de admin: http://localhost:3000/#/admin
 

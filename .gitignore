@@ -22,3 +22,12 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
+
+# IntellIJ files
+*.iml
+.idea/
+
+# Frontend packages
+seton/frontend/package-lock.json
+seton/frontend/package.json
+seton/frontend/yarn.lock
