@@ -15,9 +15,6 @@ import asi.model.entities.TeacherDao;
 public class TeacherServiceImpl implements TeacherService {
 
     @Autowired
-    private UserDao userDao;
-
-    @Autowired
     private TeacherDao teacherDao;
 
     @Autowired
@@ -28,7 +25,7 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Override
     public Teacher createTeacher(Teacher teacher) throws DuplicateInstanceException {
-        if (userDao.existsByUserName(teacher.getUser().getUserName())) {
+        if (userService.existsByUsername(teacher.getUser().getUserName())) {
             throw new DuplicateInstanceException("project.entities.user", teacher.getUser().getUserName());
         }
 

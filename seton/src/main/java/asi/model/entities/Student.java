@@ -1,5 +1,6 @@
 package asi.model.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,10 +15,11 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "additional_notes")
     private String additionalNotes;
 
     @OneToOne
-    @JoinColumn(name = "user")
+    @JoinColumn(name = "user_id")
     private Users user;
 
     public Student() {

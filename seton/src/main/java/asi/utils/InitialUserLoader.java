@@ -45,5 +45,15 @@ public class InitialUserLoader implements CommandLineRunner {
 
             languageService.createLanguage(language); // Persist the language
         }
+
+        // Check if the Spanish language already exists
+        if (!languageService.existsByName("Spanish")) {
+            // Create an initial language if it doesn't exist
+            Language language = new Language();
+            language.setName("Spanish");
+            language.setDescription("Spanish language");
+
+            languageService.createLanguage(language); // Persist the language
+        }
     }
 }

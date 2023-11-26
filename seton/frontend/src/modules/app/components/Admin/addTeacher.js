@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import {useNavigate} from "react-router-dom";
 
 const TeacherForm = () => {
+    const navigate = useNavigate();
+
     const [teacherData, setTeacherData] = useState({
         userName: '',
         password: '',
@@ -74,7 +77,8 @@ const TeacherForm = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log('Teacher created:', data);
-                // Handle success, e.g., show a success message or redirect
+                navigate('/admin/home');
+                alert('Profesor creado correctamente');
             } else {
                 // Handle errors, e.g., display an error message
                 console.error('Failed to create teacher');

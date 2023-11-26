@@ -12,15 +12,20 @@ const AdminHome = () => {
         // You can add logic to perform actions based on the button clicked
     };
 
-    const handleCrearUsuario = () => {
+    const handleCrearProfesor = () => {
         navigate('/admin/addTeacher')
+    };
+
+    const handleCrearEstudiante = () => {
+        navigate('/admin/addStudent')
     };
 
     return (
         <div>
             <h1>Welcome to Admin Home Page</h1>
             <div>
-                <button onClick={() => handleCrearUsuario()}>Crear cuenta profesor</button>
+                <button onClick={() => handleCrearProfesor()}>Crear cuenta profesor</button>
+                <button onClick={() => handleCrearEstudiante()}>Crear cuenta estudiante</button>
                 <button onClick={() => handleButtonClick('Button 2')}>Button 2</button>
                 <button onClick={() => handleButtonClick('Button 3')}>Button 3</button>
             </div>

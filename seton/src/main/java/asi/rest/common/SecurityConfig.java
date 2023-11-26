@@ -47,6 +47,7 @@ public class SecurityConfig {
                 .requestMatchers(antMatcher("/api/users/signUp")).permitAll()
                 .requestMatchers(antMatcher("/api/users/login")).permitAll()
                 .requestMatchers(antMatcher("/api/teachers/create")).permitAll()
+                .requestMatchers(antMatcher("/api/students/create")).permitAll()
                 .requestMatchers(antMatcher("/api/languages")).permitAll()
                 .requestMatchers(antMatcher("/api/users/loginFromServiceToken")).permitAll()
                 .anyRequest().authenticated()

@@ -4,5 +4,5 @@ import asi.model.common.exceptions.DuplicateInstanceException;
 import asi.model.entities.Teacher;
 
 public interface TeacherService {
-    public Teacher createTeacher(Teacher teacher) throws DuplicateInstanceException;
+    Teacher createTeacher(Teacher teacher) throws DuplicateInstanceException;
 }
