@@ -6,6 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Entity
 public class Teacher {
@@ -14,8 +18,10 @@ public class Teacher {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
-    private String image;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private Users user;
+    private byte[] image;
 
     @ManyToOne
     @JoinColumn(name = "language_id")
@@ -25,9 +31,9 @@ public class Teacher {
         // Default constructor
     }
 
-    public Teacher(Long userId, String image, Language language) {
-        this.userId = userId;
-        this.image = image;
+    public Teacher(Users user, MultipartFile image, Language language) throws IOException {
+        this.user = user;
+        this.image = image.getBytes();
         this.language = language;
     }
 
@@ -39,19 +45,19 @@ public class Teacher {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Users getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(Users user) {
+        this.user = user;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
