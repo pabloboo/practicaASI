@@ -14,21 +14,19 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long userId;
     private String additionalNotes;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user")
     private Users user;
 
     public Student() {
         // Default constructor
     }
 
-    public Student(Long userId, String additionalNotes, Users user) {
-        this.userId = userId;
-        this.additionalNotes = additionalNotes;
+    public Student(Users user, String additionalNotes) {
         this.user = user;
+        this.additionalNotes = additionalNotes;
     }
 
     public Long getId() {
@@ -39,12 +37,12 @@ public class Student {
         this.id = id;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Users getUser() {
+        return user;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setUser(Users user) {
+        this.user = user;
     }
 
     public String getAdditionalNotes() {
@@ -53,13 +51,5 @@ public class Student {
 
     public void setAdditionalNotes(String additionalNotes) {
         this.additionalNotes = additionalNotes;
-    }
-
-    public Users getUser() {
-        return user;
-    }
-
-    public void setUser(Users user) {
-        this.user = user;
     }
 }

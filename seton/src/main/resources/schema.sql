@@ -26,7 +26,7 @@ CREATE TABLE Language (
 CREATE TABLE Teacher (
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT NOT NULL,
-    image VARCHAR(255),
+    image BLOB,
     language_id INT NOT NULL,
     FOREIGN KEY (user_id) REFERENCES Users(id),
     FOREIGN KEY (language_id) REFERENCES Language(id)

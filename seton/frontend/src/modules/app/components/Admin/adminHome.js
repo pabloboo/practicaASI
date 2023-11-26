@@ -13,14 +13,14 @@ const AdminHome = () => {
     };
 
     const handleCrearUsuario = () => {
-        navigate('/admin/registerUser')
+        navigate('/admin/addTeacher')
     };
 
     return (
         <div>
             <h1>Welcome to Admin Home Page</h1>
             <div>
-                <button onClick={() => handleCrearUsuario()}>Crear cuenta usuario</button>
+                <button onClick={() => handleCrearUsuario()}>Crear cuenta profesor</button>
                 <button onClick={() => handleButtonClick('Button 2')}>Button 2</button>
                 <button onClick={() => handleButtonClick('Button 3')}>Button 3</button>
             </div>

@@ -35,6 +35,17 @@ yarn install
 yarn start
 ```
 
+## Flujo de trabajo
+En el proyecto de github entra en una issue, asignate la issue y haz click en 'create branch' 
+para comenzar el desarrollo de esa issue. En local:
+```bash
+git fetch origin
+git checkout <nombre-rama>
+```
+
+Hacer el desarrollo de la funcionalidad en esa rama y al terminar mergearla con main haciendo
+una pull request.
+
 ## Diagrama base de datos
 ![](db.png)
 
