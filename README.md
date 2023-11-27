@@ -12,6 +12,12 @@ Comprobar que la versión de java openjdk es la 17
 java --version
 ```
 
+Instalación de mvn (comprobar que es versión 3.6.3):
+```bash
+sudo apt install maven
+mvn --v
+```
+
 Ejecutar el backend:
 
 ```bash
@@ -31,8 +37,16 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 nvm install 16
+sudo apt install yarn
 yarn install
 yarn start
+```
+
+Si el yarn install da fallo y se ha descargado la versión 0.32+git se puede actualizar usando los siguientes comandos:
+```bash
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt update && sudo apt install yarn
 ```
 
 ## Flujo de trabajo
