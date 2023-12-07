@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Importa los estilos de Bootstrap
 
 const TeacherForm = () => {
     const navigate = useNavigate();
@@ -41,11 +42,6 @@ const TeacherForm = () => {
         if (type === 'file') {
             const imageFile = e.target.files[0]; // Get the selected file
             setTeacherData({ ...teacherData, image: imageFile });
-
-            // If you want to show a preview of the selected image:
-            // You can create a URL for the selected file and store it in another state
-            // const imageUrl = URL.createObjectURL(imageFile);
-            // setImagePreviewUrl(imageUrl); // setImagePreviewUrl is a state to store the preview URL
         } else {
             setTeacherData({ ...teacherData, [name]: value });
         }
@@ -53,7 +49,6 @@ const TeacherForm = () => {
 
     const handleLanguageChange = (e) => {
         const selectedLanguageId = e.target.value;
-        console.log(selectedLanguageId);
         setTeacherData({ ...teacherData, languageId: selectedLanguageId });
     };
 
@@ -67,7 +62,6 @@ const TeacherForm = () => {
             formData.append('lastName', teacherData.lastName);
             formData.append('languageId', teacherData.languageId);
             formData.append('image', teacherData.image);
-            console.log([...formData]);
 
             const response = await fetch('api/teachers/create', {
                 method: 'POST',
@@ -80,7 +74,6 @@ const TeacherForm = () => {
                 navigate('/admin/home');
                 alert('Profesor creado correctamente');
             } else {
-                // Handle errors, e.g., display an error message
                 console.error('Failed to create teacher');
             }
         } catch (error) {
@@ -89,49 +82,99 @@ const TeacherForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
-            <input
-                type="text"
-                name="userName"
-                placeholder="Username"
-                value={teacherData.userName}
-                onChange={handleChange}
-            />
-            <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={teacherData.password}
-                onChange={handleChange}
-            />
-            <input
-                type="text"
-                name="firstName"
-                placeholder="First Name"
-                value={teacherData.firstName}
-                onChange={handleChange}
-            />
-            <input
-                type="text"
-                name="lastName"
-                placeholder="Last Name"
-                value={teacherData.lastName}
-                onChange={handleChange}
-            />
-            <input
-                type="file"
-                name="image"
-                onChange={handleChange}
-            />
-            <select name="languageId" value={teacherData.languageId} onChange={handleLanguageChange}>
-                {languages.map((language) => (
-                    <option key={language.id} value={language.id}>
-                        {language.name}
-                    </option>
-                ))}
-            </select>
-            <button type="submit">Create Teacher</button>
-        </form>
+        <div className="container mt-5">
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
+                <div className="mb-3">
+                    <label htmlFor="userName" className="form-label">
+                        Username
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="userName"
+                        name="userName"
+                        placeholder="Username"
+                        value={teacherData.userName}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="password" className="form-label">
+                        Password
+                    </label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        id="password"
+                        name="password"
+                        placeholder="Password"
+                        value={teacherData.password}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="firstName" className="form-label">
+                        First Name
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="firstName"
+                        name="firstName"
+                        placeholder="First Name"
+                        value={teacherData.firstName}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="lastName" className="form-label">
+                        Last Name
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="lastName"
+                        name="lastName"
+                        placeholder="Last Name"
+                        value={teacherData.lastName}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="image" className="form-label">
+                        Image
+                    </label>
+                    <input
+                        type="file"
+                        className="form-control"
+                        id="image"
+                        name="image"
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="languageId" className="form-label">
+                        Language
+                    </label>
+                    <select
+                        className="form-control"
+                        id="languageId"
+                        name="languageId"
+                        value={teacherData.languageId}
+                        onChange={handleLanguageChange}
+                    >
+                        {languages.map((language) => (
+                            <option key={language.id} value={language.id}>
+                                {language.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <button type="submit" className="btn btn-primary">
+                    Create Teacher
+                </button>
+            </form>
+        </div>
     );
 };
 

@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "./App.css";
-import { config } from "../../../config/constants.js";
+import "bootstrap/dist/css/bootstrap.min.css"; // Importa los estilos de Bootstrap
 import { Link } from "react-router-dom";
 
 const Login = () => {
-    const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -23,12 +20,9 @@ const Login = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                // Handle successful login - e.g., store authentication token in localStorage
                 console.log('Login successful:', data);
                 localStorage.setItem('token', data.serviceToken);
-                // navigate('/admin');
             } else {
-                // Handle login error - e.g., display error message
                 console.error('Login failed');
             }
         } catch (error) {
@@ -37,32 +31,47 @@ const Login = () => {
     };
 
     return (
-        <div className="App">
-            <p>
-                <Link to="admin/registerUser">Register</Link>
-            </p>
-            <form action="" onSubmit={onSubmit}>
-                <p>
-                    <label htmlFor="username">Username: </label>
-                    <input
-                        name="username"
-                        id="username"
-                        value={username}
-                        onChange={(ev) => setUsername(ev.currentTarget.value)}
-                    />
-                </p>
-                <p>
-                    <label htmlFor="password">Password: </label>
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        value={password}
-                        onChange={(ev) => setPassword(ev.currentTarget.value)}
-                    />
-                </p>
-                <button type="submit">Login</button>
-            </form>
+        <div className="container mt-5">
+            <div className="card bg-light border-dark">
+                <h5 className="card-header text-center">
+                    <label>Login</label>
+                </h5>
+                <div className="card-body">
+                    <form onSubmit={onSubmit}>
+                        <div className="form-group text-center">
+                            <label htmlFor="username">Username</label>
+                            <div className="col-md-4 mx-auto">
+                                <input
+                                type="text"
+                                className="form-control"
+                                id="username"
+                                value={username}
+                                onChange={(ev) => setUsername(ev.currentTarget.value)}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="form-group text-center">
+                            <label htmlFor="password" className="mx-auto">Password</label>
+                            <div className="col-md-4 mx-auto">
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    id="password"
+                                    value={password}
+                                    onChange={(ev) => setPassword(ev.currentTarget.value)}
+                                />
+                            </div>
+                        </div>
+
+                        <div className="form-group text-center">
+                            <div className="mt-2">
+                            <button type="submit" className="btn btn-primary btn-block">Login</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 };
