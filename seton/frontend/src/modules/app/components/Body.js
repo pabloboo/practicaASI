@@ -19,6 +19,7 @@ const Body = () => {
         <Route path="/admin/home" element={<AdminHome />} />
         <Route path="/admin/addTeacher" element={<TeacherForm />} />
         <Route path="/admin/addStudent" element={<StudentForm />} />
+        <Route path="/admin/addClass" element={<div/>} />
       </Route>
     </Routes>
   );
