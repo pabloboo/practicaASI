@@ -21,7 +21,7 @@ const AdminHome = () => {
 
     return (
         <div className="container mt-5">
-            <h1 className="mb-4">Welcome to Admin Home Page</h1>
+            <h1 className="mb-4 text-center">Administrador</h1>
             <div className="d-flex justify-content-between">
                 <button
                     onClick={() => handleCrearProfesor()}

@@ -88,6 +88,6 @@ En el fichero Body.js se pueden añadir nuevas rutas.
 Url para acceder a la parte de profesor/estudiante 
 (una vez creada alguna cuenta en la parte de administrador): http://localhost:3000/
 
-Url para acceder a la parte de admin: http://localhost:3000/#/admin
+Url para acceder a la parte de admin: http://localhost:3000/admin
 
 u: admin, c: admin
