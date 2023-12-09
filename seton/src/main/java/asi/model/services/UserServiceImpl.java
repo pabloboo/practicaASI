@@ -47,8 +47,9 @@ public class UserServiceImpl implements UserService {
 		}
 
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		user.setRole(Users.RoleType.USER);
-
+		if (user.getRole() == null) {
+			user.setRole(Users.RoleType.USER);
+		}
 		userDao.save(user);
 
 	}
@@ -63,12 +64,28 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	@Transactional(readOnly = true)
-	public Users login(String userName, String password) throws IncorrectLoginException {
+	public Users login(String userName, String password, Users.RoleType role) throws IncorrectLoginException {
 
 		Optional<Users> user = userDao.findByUserName(userName);
 
-		if (!user.isPresent()) {
-			throw new IncorrectLoginException(userName, password);
+		if (role == null) {
+			if (!user.isPresent()) {
+				throw new IncorrectLoginException(userName, password);
+			}
+		} else {
+			if (role.equals(Users.RoleType.ADMIN)) {
+				if (!user.isPresent() || !user.get().getRole().equals(Users.RoleType.ADMIN)) {
+					throw new IncorrectLoginException(userName, password);
+				}
+			} else if (role.equals(Users.RoleType.STUDENT)) {
+				if (!user.isPresent() || !user.get().getRole().equals(Users.RoleType.STUDENT)) {
+					throw new IncorrectLoginException(userName, password);
+				}
+			} else if (role.equals(Users.RoleType.TEACHER)) {
+				if (!user.isPresent() || !user.get().getRole().equals(Users.RoleType.TEACHER)) {
+					throw new IncorrectLoginException(userName, password);
+				}
+			}
 		}
 
 		if (!passwordEncoder.matches(password, user.get().getPassword())) {

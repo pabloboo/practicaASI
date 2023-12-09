@@ -135,7 +135,55 @@ public class UserController {
 	@PostMapping("/login")
 	public AuthenticatedUserDto login(@Validated @RequestBody LoginParamsDto params) throws IncorrectLoginException {
 
-		Users user = userService.login(params.getUserName(), params.getPassword());
+		Users user = userService.login(params.getUserName(), params.getPassword(), null);
+
+		return toAuthenticatedUserDto(generateServiceToken(user), user);
+
+	}
+
+	/**
+	 * Login.
+	 *
+	 * @param params the params
+	 * @return the authenticated user dto
+	 * @throws IncorrectLoginException the incorrect login exception
+	 */
+	@PostMapping("/loginAdmin")
+	public AuthenticatedUserDto loginAdmin(@Validated @RequestBody LoginParamsDto params) throws IncorrectLoginException {
+
+		Users user = userService.login(params.getUserName(), params.getPassword(), Users.RoleType.ADMIN);
+
+		return toAuthenticatedUserDto(generateServiceToken(user), user);
+
+	}
+
+	/**
+	 * Login.
+	 *
+	 * @param params the params
+	 * @return the authenticated user dto
+	 * @throws IncorrectLoginException the incorrect login exception
+	 */
+	@PostMapping("/loginStudent")
+	public AuthenticatedUserDto loginStudent(@Validated @RequestBody LoginParamsDto params) throws IncorrectLoginException {
+
+		Users user = userService.login(params.getUserName(), params.getPassword(), Users.RoleType.STUDENT);
+
+		return toAuthenticatedUserDto(generateServiceToken(user), user);
+
+	}
+
+	/**
+	 * Login.
+	 *
+	 * @param params the params
+	 * @return the authenticated user dto
+	 * @throws IncorrectLoginException the incorrect login exception
+	 */
+	@PostMapping("/loginTeacher")
+	public AuthenticatedUserDto loginTeacher(@Validated @RequestBody LoginParamsDto params) throws IncorrectLoginException {
+
+		Users user = userService.login(params.getUserName(), params.getPassword(), Users.RoleType.TEACHER);
 
 		return toAuthenticatedUserDto(generateServiceToken(user), user);
 

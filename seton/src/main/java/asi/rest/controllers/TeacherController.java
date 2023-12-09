@@ -36,7 +36,7 @@ public class TeacherController {
         users.setFirstName(teacherDto.getFirstName());
         users.setLastName(teacherDto.getLastName());
         users.setEmail(teacherDto.getFirstName()+"@unervesalis.com");
-        users.setRole(Users.RoleType.USER);
+        users.setRole(Users.RoleType.TEACHER);
         newTeacher.setUser(users);
         newTeacher.setImage(teacherDto.getImage().getBytes());
         newTeacher.setLanguage(languageService.findLanguageById(teacherDto.getLanguageId()).get());

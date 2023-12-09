@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
-import { Link } from "react-router-dom";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -13,7 +12,7 @@ const Login = () => {
     const onSubmit = async (ev) => {
         ev.preventDefault();
         try {
-            const response = await fetch('api/users/login', {
+            const response = await fetch('api/users/loginAdmin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -24,8 +23,12 @@ const Login = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log('Login successful:', data);
-                localStorage.setItem('token', data.serviceToken);
-                navigate('/admin/home');
+                Promise.all([
+                    localStorage.setItem('token', data.serviceToken),
+                    localStorage.setItem('role', data.user.role)
+                ]).then(() => {
+                    navigate('/admin/home');
+                });
             } else {
                 console.error('Login failed');
             }

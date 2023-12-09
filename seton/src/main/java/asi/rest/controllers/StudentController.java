@@ -30,7 +30,7 @@ public class StudentController {
         users.setFirstName(studentDto.getFirstName());
         users.setLastName(studentDto.getLastName());
         users.setEmail(studentDto.getFirstName()+"@unervesalis.com");
-        users.setRole(Users.RoleType.USER);
+        users.setRole(Users.RoleType.STUDENT);
 
         newStudent.setUser(users);
         newStudent.setAdditionalNotes(studentDto.getAdditionalNotes());

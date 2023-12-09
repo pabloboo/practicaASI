@@ -5,12 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Importa los estilos de Bootstr
 const AdminHome = () => {
     const navigate = useNavigate();
 
-    const handleButtonClick = (buttonName) => {
-        // Lógica para manejar clics de botones
-        console.log(`Button "${buttonName}" clicked`);
-        const token = localStorage.getItem('token'); // Recupera el token del almacenamiento
-        console.log(token);
-        // Puedes agregar lógica para realizar acciones basadas en el botón clickeado
+    const handleLogout = () => {
+        localStorage.removeItem('token'); // Elimina el token del localStorage
+        localStorage.removeItem('role'); // Elimina el rol del localStorage
+        navigate('/'); // Redirige al usuario a la página de login
     };
 
     const handleCrearProfesor = () => {
@@ -38,6 +36,9 @@ const AdminHome = () => {
                     Crear cuenta estudiante
                 </button>
             </div>
+            <button onClick={handleLogout} className="btn btn-danger mt-3">
+                Logout
+            </button>
         </div>
     );
 };

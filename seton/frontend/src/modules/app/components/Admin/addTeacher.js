@@ -63,8 +63,12 @@ const TeacherForm = () => {
             formData.append('languageId', teacherData.languageId);
             formData.append('image', teacherData.image);
 
+            const token = localStorage.getItem('token');
             const response = await fetch('api/teachers/create', {
                 method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
                 body: formData,
             });
 

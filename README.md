@@ -49,6 +49,12 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt update && sudo apt install yarn
 ```
 
+Otras dependencias que son necesarias añadir:
+```bash
+yarn add bootstrap
+yarn add @popperjs/core
+```
+
 ## Flujo de trabajo
 En el proyecto de github entra en una issue, asignate la issue y haz click en 'create branch' 
 para comenzar el desarrollo de esa issue. En local:

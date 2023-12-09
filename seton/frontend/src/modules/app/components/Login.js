@@ -1,16 +1,24 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css"; // Importa los estilos de Bootstrap
-import { Link } from "react-router-dom";
 
 const Login = () => {
+    const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [userType, setUserType] = useState('student');
 
     const onSubmit = async (ev) => {
         ev.preventDefault();
         try {
-            const response = await fetch('api/users/login', {
+            let endpoint = '';
+            if (userType == 'student') {
+                endpoint = 'api/users/loginStudent';
+            } else {
+                endpoint = 'api/users/loginTeacher'
+            }
+            const response = await fetch(endpoint, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -21,7 +29,16 @@ const Login = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log('Login successful:', data);
-                localStorage.setItem('token', data.serviceToken);
+                Promise.all([
+                    localStorage.setItem('token', data.serviceToken),
+                    localStorage.setItem('role', data.user.role)
+                ]).then(() => {
+                    if (data.user.role == 'TEACHER') {
+                        navigate('/teacher/home');
+                    } else if (data.user.role == 'STUDENT') {
+                        navigate('/student/home');
+                    }
+                });
             } else {
                 console.error('Login failed');
             }
@@ -62,6 +79,29 @@ const Login = () => {
                                     onChange={(ev) => setPassword(ev.currentTarget.value)}
                                 />
                             </div>
+                        </div>
+
+                        <div className="mt-2 text-center">
+                            <label className="ml-3">
+                                <input
+                                    type="radio"
+                                    value="student"
+                                    checked={userType === 'student'}
+                                    onChange={() => setUserType('student')}
+                                />
+                                Estudiante
+                            </label>
+                        </div>
+                        <div className="mt-2 text-center">
+                            <label>
+                                <input
+                                    type="radio"
+                                    value="teacher"
+                                    checked={userType === 'teacher'}
+                                    onChange={() => setUserType('teacher')}
+                                />
+                                Profesor
+                            </label>
                         </div>
 
                         <div className="form-group text-center">
