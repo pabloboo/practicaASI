@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Importa los estilos de Bootstr
 
 const StudentForm = () => {
     const navigate = useNavigate();
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const [studentData, setStudentData] = useState({
         userName: '',
@@ -21,10 +23,12 @@ const StudentForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            const token = localStorage.getItem('token');
             const response = await fetch('api/students/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify({
                     userName: studentData.userName,
@@ -38,19 +42,27 @@ const StudentForm = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log('Student created:', data);
-                navigate('/admin/home');
-                alert('Estudiante creado correctamente');
+                setSuccessMessage('Estudiante creado correctamente');
+                setErrorMessage('');
             } else {
                 // Handle errors, e.g., display an error message
                 console.error('Failed to create student');
+                setErrorMessage('Error al crear el estudiante');
             }
         } catch (error) {
             console.error('Error:', error);
+            setErrorMessage('Error al crear el estudiante');
         }
+    };
+
+    const handleAccept = () => {
+        navigate('/admin/home');
+        setSuccessMessage('');
     };
 
     return (
         <div className="container mt-5">
+            <h1 className="mb-4 text-center">Añadir estudiante</h1>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="userName" className="form-label">
@@ -126,6 +138,25 @@ const StudentForm = () => {
                     Create Student
                 </button>
             </form>
+            <div className="row justify-content-center">
+                <div className="col-md-6">
+                    <div className="mb-3">
+                        {successMessage && (
+                            <div className="alert alert-success d-flex justify-content-between align-items-center" role="alert">
+                                <span>{successMessage}</span>
+                                <button type="button" className="btn btn-success btn-sm" onClick={handleAccept}>
+                                    Aceptar
+                                </button>
+                            </div>
+                        )}
+                        {errorMessage && (
+                            <div className="alert alert-danger" role="alert">
+                                {errorMessage}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };

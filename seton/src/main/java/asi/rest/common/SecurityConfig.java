@@ -2,6 +2,7 @@ package asi.rest.common;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
+import asi.model.entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -46,8 +47,11 @@ public class SecurityConfig {
                 .requestMatchers(antMatcher("/api/hello")).permitAll()
                 .requestMatchers(antMatcher("/api/users/signUp")).permitAll()
                 .requestMatchers(antMatcher("/api/users/login")).permitAll()
-                .requestMatchers(antMatcher("/api/teachers/create")).permitAll()
-                .requestMatchers(antMatcher("/api/students/create")).permitAll()
+                .requestMatchers(antMatcher("/api/users/loginAdmin")).permitAll()
+                .requestMatchers(antMatcher("/api/users/loginStudent")).permitAll()
+                .requestMatchers(antMatcher("/api/users/loginTeacher")).permitAll()
+                .requestMatchers(antMatcher("/api/teachers/create")).hasRole("ADMIN")
+                .requestMatchers(antMatcher("/api/students/create")).hasRole("ADMIN")
                 .requestMatchers(antMatcher("/api/languages")).permitAll()
                 .requestMatchers(antMatcher("/api/users/loginFromServiceToken")).permitAll()
                 .anyRequest().authenticated()

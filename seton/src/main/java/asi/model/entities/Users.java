@@ -16,7 +16,7 @@ public class Users {
 	 */
 	public enum RoleType {
 		/** The user. */
-		USER, ADMIN
+		USER, ADMIN, TEACHER, STUDENT
 	}
 
 	/** The id. */
