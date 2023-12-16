@@ -15,7 +15,7 @@ public class ClassServiceImpl implements ClassService{
 
     @Override
     public Class createClass(Class newClass) throws DuplicateInstanceException {
-        if (classDao.existsById(newClass.getId())) {
+        if (classDao.existsByGroupName(newClass.getGroupName())) {
             throw new DuplicateInstanceException("project.entities.class", newClass.getGroupName());
         }
         return classDao.save(newClass);

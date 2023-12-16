@@ -4,6 +4,7 @@ import asi.model.common.exceptions.DuplicateInstanceException;
 import asi.model.entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import asi.model.services.LanguageService;
 import asi.rest.dtos.TeacherDto;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/teachers")
@@ -25,6 +27,12 @@ public class TeacherController {
 
     @Autowired
     private LanguageService languageService;
+
+    @GetMapping
+    public ResponseEntity<List<Teacher>> getAllTeachers() {
+        List<Teacher> teachers = teacherService.findAllTeachers();
+        return ResponseEntity.ok(teachers);
+    }
 
     @PostMapping("/create")
     public ResponseEntity<Teacher> createTeacher(@ModelAttribute TeacherDto teacherDto) throws IOException {

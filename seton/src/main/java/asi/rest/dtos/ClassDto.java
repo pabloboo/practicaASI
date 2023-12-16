@@ -4,57 +4,52 @@ import asi.model.entities.Language;
 import asi.model.entities.Teacher;
 
 public class ClassDto {
-    private Long id;
+
     private String groupName;
     private String level;
     private Long teacherId;
-    private Language language;
-    private Teacher teacher;
+    private Long languageId;
+
     public ClassDto() {
         super();
     }
-    public ClassDto(Long id, String groupName, String level, Long teacherId, Language language, Teacher teacher) {
-        this.id = id;
+
+    public ClassDto(String groupName, String level, Long teacherId, Long languageId) {
         this.groupName = groupName;
         this.level = level;
         this.teacherId = teacherId;
-        this.language = language;
-        this.teacher = teacher;
+        this.languageId = languageId;
     }
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
+
     public String getGroupName() {
         return groupName;
     }
+
     public void setGroupName(String groupName) {
         this.groupName = groupName;
     }
+
     public String getLevel() {
         return level;
     }
+
     public void setLevel(String level) {
         this.level = level;
     }
+
     public Long getTeacherId() {
         return teacherId;
     }
+
     public void setTeacherId(Long teacherId) {
         this.teacherId = teacherId;
     }
-    public Language getLanguage() {
-        return language;
+
+    public Long getLanguageId() {
+        return languageId;
     }
-    public void setLanguage(Language language) {
-        this.language = language;
-    }
-    public Teacher getTeacher() {
-        return teacher;
-    }
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+
+    public void setLanguageId(Long languageId) {
+        this.languageId = languageId;
     }
 }
