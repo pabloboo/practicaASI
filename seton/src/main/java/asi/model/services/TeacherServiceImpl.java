@@ -10,6 +10,9 @@ import asi.model.entities.Language;
 import asi.model.entities.Teacher;
 import asi.model.entities.TeacherDao;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @Transactional
 public class TeacherServiceImpl implements TeacherService {
@@ -22,6 +25,16 @@ public class TeacherServiceImpl implements TeacherService {
 
     @Autowired
     private UserService userService;
+
+    @Override
+    public List<Teacher> findAllTeachers() {
+        return teacherDao.findAll();
+    }
+
+    @Override
+    public Optional<Teacher> findTeacherById(Long id) {
+        return teacherDao.findById(id);
+    }
 
     @Override
     public Teacher createTeacher(Teacher teacher) throws DuplicateInstanceException {

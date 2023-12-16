@@ -19,6 +19,10 @@ const AdminHome = () => {
         navigate('/admin/addStudent');
     };
 
+    const handleCrearClase = () => {
+        navigate('/admin/addClass');
+    };
+
     return (
         <div className="container mt-5">
             <h1 className="mb-4 text-center">Administrador</h1>
@@ -31,9 +35,15 @@ const AdminHome = () => {
                 </button>
                 <button
                     onClick={() => handleCrearEstudiante()}
-                    className="btn btn-success"
+                    className="btn btn-primary"
                 >
                     Crear cuenta estudiante
+                </button>
+                <button
+                    onClick={() => handleCrearClase()}
+                    className="btn btn-primary"
+                >
+                    Crear clase
                 </button>
             </div>
             <button onClick={handleLogout} className="btn btn-danger mt-3">

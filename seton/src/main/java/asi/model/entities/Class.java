@@ -1,11 +1,13 @@
 package asi.model.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 @Entity
 public class Class {
@@ -14,35 +16,27 @@ public class Class {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "group_name")
     private String groupName;
     private String level;
-    private Long teacherId;
 
     @ManyToOne
     @JoinColumn(name = "language_id")
     private Language language;
 
     @ManyToOne
-    @JoinColumn(name = "teacher_id", insertable = false, updatable = false)
+    @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
     public Class() {
         // Default constructor
     }
 
-    public Class(String groupName, String level, Long teacherId, Language language) {
+    public Class(String groupName, String level, Language language, Teacher teacher) {
         this.groupName = groupName;
         this.level = level;
-        this.teacherId = teacherId;
         this.language = language;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.teacher = teacher;
     }
 
     public String getGroupName() {
@@ -59,14 +53,6 @@ public class Class {
 
     public void setLevel(String level) {
         this.level = level;
-    }
-
-    public Long getTeacherId() {
-        return teacherId;
-    }
-
-    public void setTeacherId(Long teacherId) {
-        this.teacherId = teacherId;
     }
 
     public Language getLanguage() {
