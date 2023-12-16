@@ -1,5 +1,6 @@
 package asi.model.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,22 +10,33 @@ import java.sql.Time;
 @Entity
 public class Schedule {
 
+    public enum WeekDay {
+        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "start_time")
     private Time startTime;
+    @Column(name = "end_time")
     private Time endTime;
     private String classroom;
+
+    @Column(name = "week_day")
+    private WeekDay weekDay;
 
     public Schedule() {
         // Default constructor
     }
 
-    public Schedule(Time startTime, Time endTime, String classroom) {
+    public Schedule(Long id, Time startTime, Time endTime, String classroom, WeekDay weekDay) {
+        this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
         this.classroom = classroom;
+        this.weekDay = weekDay;
     }
 
     public Long getId() {
@@ -57,5 +69,13 @@ public class Schedule {
 
     public void setClassroom(String classroom) {
         this.classroom = classroom;
+    }
+
+    public WeekDay getWeekDay() {
+        return weekDay;
+    }
+
+    public void setWeekDay(WeekDay weekDay) {
+        this.weekDay = weekDay;
     }
 }

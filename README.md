@@ -53,6 +53,7 @@ Otras dependencias que son necesarias añadir:
 ```bash
 yarn add bootstrap
 yarn add @popperjs/core
+yarn add react-datepicker moment
 ```
 
 ## Flujo de trabajo

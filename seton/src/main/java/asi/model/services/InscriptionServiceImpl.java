@@ -32,7 +32,7 @@ public class InscriptionServiceImpl implements InscriptionService {
         for (Inscription inscriptionIterator : inscriptionList) {
             if (inscriptionIterator.getaClassEntity().equals(inscription.getaClassEntity()) &&
                 inscriptionIterator.getStudent().equals(inscription.getStudent())) {
-                throw new DuplicateInstanceException("project.entities.user", inscription.getaClassEntity().getGroupName());
+                throw new DuplicateInstanceException("project.entities.inscription", inscription.getaClassEntity().getGroupName());
             }
         }
 
