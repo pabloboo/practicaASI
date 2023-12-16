@@ -27,6 +27,10 @@ const AdminHome = () => {
         navigate('/admin/addInscription');
     };
 
+    const handleCrearSchedule = () => {
+        navigate('/admin/addSchedule');
+    };
+
     return (
         <div className="container mt-5">
             <h1 className="mb-4 text-center">Administrador</h1>
@@ -54,6 +58,12 @@ const AdminHome = () => {
                     className="btn btn-primary"
                 >
                     Crear inscripción
+                </button>
+                <button
+                    onClick={() => handleCrearSchedule()}
+                    className="btn btn-primary"
+                >
+                    Crear horario
                 </button>
             </div>
             <button onClick={handleLogout} className="btn btn-danger mt-3">

@@ -44,7 +44,8 @@ CREATE TABLE Schedule (
     id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     start_time TIME NOT NULL,
     end_time TIME NOT NULL,
-    classroom VARCHAR(50) NOT NULL
+    classroom VARCHAR(50) NOT NULL,
+    week_day TINYINT NOT NULL
 );
 
 -- Clase

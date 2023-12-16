@@ -12,6 +12,7 @@ import StudentHome from "./Student/studentHome";
 import TeacherHome from "./Teacher/teacherHome";
 import ClassForm from "./Admin/addClass";
 import InscriptionForm from "./Admin/addInscription";
+import ScheduleForm from "./Admin/addSchedule";
 
 const Body = () => {
   const [loading, setLoading] = useState(true);
@@ -47,6 +48,7 @@ const Body = () => {
         {isAdmin && <Route path="/admin/addStudent" element={<StudentForm/>}/>}
         {isAdmin && <Route path="/admin/addClass" element={<ClassForm/>}/>}
         {isAdmin && <Route path="/admin/addInscription" element={<InscriptionForm/>}/>}
+        {isAdmin && <Route path="/admin/addSchedule" element={<ScheduleForm/>}/>}
         {isStudent && <Route path="/student/home" element={<StudentHome/>}/>}
         {isTeacher && <Route path="/teacher/home" element={<TeacherHome/>}/>}
         <Route path="/admin/addClass" element={<div/>} />
