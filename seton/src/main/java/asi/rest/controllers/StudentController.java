@@ -2,16 +2,18 @@ package asi.rest.controllers;
 
 import asi.model.common.exceptions.DuplicateInstanceException;
 import asi.model.entities.Student;
-import asi.model.entities.Teacher;
 import asi.model.entities.Users;
 import asi.model.services.StudentService;
 import asi.rest.dtos.StudentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/students")
@@ -19,6 +21,12 @@ public class StudentController {
 
     @Autowired
     private StudentService studentService;
+
+    @GetMapping
+    public ResponseEntity<List<Student>> getAllStudents() {
+        List<Student> students = studentService.findAllStudents();
+        return ResponseEntity.ok(students);
+    }
 
     @PostMapping("/create")
     public ResponseEntity<Student> createStudent(@RequestBody StudentDto studentDto) throws DuplicateInstanceException {

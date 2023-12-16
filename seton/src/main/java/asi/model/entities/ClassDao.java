@@ -2,12 +2,12 @@ package asi.model.entities;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ClassDao extends JpaRepository<Class, Long> {
+public interface ClassDao extends JpaRepository<ClassEntity, Long> {
 
     /**
-     * Exists by user name.
+     * Exists by group name.
      *
-     * @param userName the user name
+     * @param groupName the group name
      * @return true, if successful
      */
     boolean existsByGroupName(String groupName);

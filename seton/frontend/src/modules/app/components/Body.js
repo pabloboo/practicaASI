@@ -11,6 +11,7 @@ import StudentForm from "./Admin/addStudent";
 import StudentHome from "./Student/studentHome";
 import TeacherHome from "./Teacher/teacherHome";
 import ClassForm from "./Admin/addClass";
+import InscriptionForm from "./Admin/addInscription";
 
 const Body = () => {
   const [loading, setLoading] = useState(true);
@@ -45,6 +46,7 @@ const Body = () => {
         {isAdmin && <Route path="/admin/addTeacher" element={<TeacherForm/>}/>}
         {isAdmin && <Route path="/admin/addStudent" element={<StudentForm/>}/>}
         {isAdmin && <Route path="/admin/addClass" element={<ClassForm/>}/>}
+        {isAdmin && <Route path="/admin/addInscription" element={<InscriptionForm/>}/>}
         {isStudent && <Route path="/student/home" element={<StudentHome/>}/>}
         {isTeacher && <Route path="/teacher/home" element={<TeacherHome/>}/>}
         <Route path="/admin/addClass" element={<div/>} />

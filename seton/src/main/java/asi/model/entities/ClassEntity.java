@@ -7,10 +7,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
-public class Class {
+@Table(name = "Class")
+public class ClassEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,15 +29,23 @@ public class Class {
     @JoinColumn(name = "teacher_id")
     private Teacher teacher;
 
-    public Class() {
+    public ClassEntity() {
         // Default constructor
     }
 
-    public Class(String groupName, String level, Language language, Teacher teacher) {
+    public ClassEntity(String groupName, String level, Language language, Teacher teacher) {
         this.groupName = groupName;
         this.level = level;
         this.language = language;
         this.teacher = teacher;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getGroupName() {

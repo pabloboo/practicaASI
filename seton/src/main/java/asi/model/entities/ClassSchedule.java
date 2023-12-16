@@ -19,7 +19,7 @@ public class ClassSchedule {
 
     @ManyToOne
     @JoinColumn(name = "class_id")
-    private Class aClass;
+    private ClassEntity aClassEntity;
 
     @ManyToOne
     @JoinColumn(name = "schedule_id")
@@ -29,10 +29,10 @@ public class ClassSchedule {
         // Default constructor
     }
 
-    public ClassSchedule(Long classId, Long scheduleId, Class aClass, Schedule schedule) {
+    public ClassSchedule(Long classId, Long scheduleId, ClassEntity aClassEntity, Schedule schedule) {
         this.classId = classId;
         this.scheduleId = scheduleId;
-        this.aClass = aClass;
+        this.aClassEntity = aClassEntity;
         this.schedule = schedule;
     }
 
@@ -60,12 +60,12 @@ public class ClassSchedule {
         this.scheduleId = scheduleId;
     }
 
-    public Class getaClass() {
-        return aClass;
+    public ClassEntity getaClass() {
+        return aClassEntity;
     }
 
-    public void setaClass(Class aClass) {
-        this.aClass = aClass;
+    public void setaClass(ClassEntity aClassEntity) {
+        this.aClassEntity = aClassEntity;
     }
 
     public Schedule getSchedule() {

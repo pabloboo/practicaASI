@@ -23,6 +23,10 @@ const AdminHome = () => {
         navigate('/admin/addClass');
     };
 
+    const handleCrearInscription = () => {
+        navigate('/admin/addInscription');
+    };
+
     return (
         <div className="container mt-5">
             <h1 className="mb-4 text-center">Administrador</h1>
@@ -44,6 +48,12 @@ const AdminHome = () => {
                     className="btn btn-primary"
                 >
                     Crear clase
+                </button>
+                <button
+                    onClick={() => handleCrearInscription()}
+                    className="btn btn-primary"
+                >
+                    Crear inscripción
                 </button>
             </div>
             <button onClick={handleLogout} className="btn btn-danger mt-3">
