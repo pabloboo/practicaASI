@@ -40,7 +40,7 @@ public class ScheduleController {
         }
 
         // Call the service method to save the new Schedule
-        return ResponseEntity.ok(newSchedule);
+        return ResponseEntity.ok(scheduleService.createSchedule(newSchedule));
     }
 
 }

@@ -2,27 +2,27 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {useNavigate} from "react-router-dom"; // Importa los estilos de Bootstrap
 
-const InscriptionForm = () => {
+const ClassScheduleForm = () => {
     const navigate = useNavigate();
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
 
-    const [classData, setClassData] = useState({
-       classEntityId: '1',
-       studentId: '1'
+    const [classScheduleData, setClassScheduleData] = useState({
+        classEntityId: '1',
+        scheduleId: '1'
     });
 
     const [classEntities, setClassEntities] = useState([]);
-    const [students, setStudents] = useState([]);
+    const [schedules, setSchedules] = useState([]);
 
     const handleClassEntityChange = (e) => {
         const selectedClassEntityId = e.target.value;
-        setClassData({ ...classData, classEntityId: selectedClassEntityId });
+        setClassScheduleData({ ...classScheduleData, classEntityId: selectedClassEntityId });
     };
 
-    const handleStudentChange = (e) => {
-        const selectedStudentId = e.target.value;
-        setClassData({ ...classData, studentId: selectedStudentId });
+    const handleScheduleChange = (e) => {
+        const selectedScheduleId = e.target.value;
+        setClassScheduleData({ ...classScheduleData, scheduleId: selectedScheduleId });
     };
 
     useEffect(() => {
@@ -41,33 +41,34 @@ const InscriptionForm = () => {
         };
 
         // Fetch teachers from the server
-        const fetchStudents = async () => {
+        const fetchSchedules = async () => {
             try {
-                const response = await fetch('api/students');
+                const response = await fetch('api/schedules');
                 if (response.ok) {
                     const data = await response.json();
-                    setStudents(data);
+                    console.log(schedules);
+                    setSchedules(data);
                 } else {
-                    console.error('Failed to fetch students');
+                    console.error('Failed to fetch schedules');
                 }
             } catch (error) {
-                console.error('Error fetching students:', error);
+                console.error('Error fetching schedules:', error);
             }
         };
 
         fetchClassEntities();
-        fetchStudents();
+        fetchSchedules();
     }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const formData = new FormData();
-            formData.append('aClassId', classData.classEntityId);
-            formData.append('studentId', classData.studentId);
+            formData.append('classId', classScheduleData.classEntityId);
+            formData.append('scheduleId', classScheduleData.scheduleId);
 
             const token = localStorage.getItem('token');
-            const response = await fetch('api/inscriptions/create', {
+            const response = await fetch('api/classSchedules/create', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -78,16 +79,16 @@ const InscriptionForm = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log('Inscription created:', data);
-                setSuccessMessage('Inscripción creada correctamente');
+                setSuccessMessage('Horario de clase creado correctamente');
                 setErrorMessage('');
             } else {
                 // Handle errors, e.g., display an error message
-                console.error('Failed to create inscription');
-                setErrorMessage('Error al crear la inscripción');
+                console.error('Failed to create class schedule');
+                setErrorMessage('Error al crear el horario de clase');
             }
         } catch (error) {
             console.error('Error:', error);
-            setErrorMessage('Error al crear la inscripción');
+            setErrorMessage('Error al crear el horario de clase');
         }
     };
 
@@ -98,7 +99,7 @@ const InscriptionForm = () => {
 
     return (
         <div className="container mt-5">
-            <h1 className="mb-4 text-center">Crear Inscripción</h1>
+            <h1 className="mb-4 text-center">Crear Horario de clase</h1>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="classEntityId" className="form-label">
@@ -108,7 +109,7 @@ const InscriptionForm = () => {
                         className="form-control"
                         id="classEntityId"
                         name="classEntityId"
-                        value={classData.classEntityId}
+                        value={classScheduleData.classEntityId}
                         onChange={handleClassEntityChange}
                     >
                         {classEntities.map((classEntity) => (
@@ -120,26 +121,26 @@ const InscriptionForm = () => {
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="studentId" className="form-label">
-                        Estudiante
+                    <label htmlFor="scheduleId" className="form-label">
+                        Horario
                     </label>
                     <select
                         className="form-control"
-                        id="studentId"
-                        name="studentId"
-                        value={classData.studentId}
-                        onChange={handleStudentChange}
+                        id="scheduleId"
+                        name="scheduleId"
+                        value={classScheduleData.studentId}
+                        onChange={handleScheduleChange}
                     >
-                        {students.map((student) => (
-                            <option key={student.id} value={student.id}>
-                                {student.user.userName}
+                        {schedules.map((schedule) => (
+                            <option key={schedule.id} value={schedule.id}>
+                                {schedule.startTime} - {schedule.endTime} - {schedule.weekDay} - {schedule.classroom}
                             </option>
                         ))}
                     </select>
                 </div>
 
                 <button type="submit" className="btn btn-primary">
-                    Crear Inscripción
+                    Crear horario de clase
                 </button>
             </form>
             <div className="row justify-content-center">
@@ -163,7 +164,7 @@ const InscriptionForm = () => {
             </div>
         </div>
     );
-    
+
 }
 
-export default InscriptionForm;
+export default ClassScheduleForm;

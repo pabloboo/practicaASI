@@ -18,7 +18,9 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "start_time")
     private Time startTime;
+    @Column(name = "end_time")
     private Time endTime;
     private String classroom;
 

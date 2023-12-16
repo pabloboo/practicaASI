@@ -14,12 +14,9 @@ public class ClassSchedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long classId;
-    private Long scheduleId;
-
     @ManyToOne
     @JoinColumn(name = "class_id")
-    private ClassEntity aClassEntity;
+    private ClassEntity classEntity;
 
     @ManyToOne
     @JoinColumn(name = "schedule_id")
@@ -29,10 +26,9 @@ public class ClassSchedule {
         // Default constructor
     }
 
-    public ClassSchedule(Long classId, Long scheduleId, ClassEntity aClassEntity, Schedule schedule) {
-        this.classId = classId;
-        this.scheduleId = scheduleId;
-        this.aClassEntity = aClassEntity;
+    public ClassSchedule(Long id, ClassEntity classEntity, Schedule schedule) {
+        this.id = id;
+        this.classEntity = classEntity;
         this.schedule = schedule;
     }
 
@@ -44,28 +40,12 @@ public class ClassSchedule {
         this.id = id;
     }
 
-    public Long getClassId() {
-        return classId;
+    public ClassEntity getClassEntity() {
+        return classEntity;
     }
 
-    public void setClassId(Long classId) {
-        this.classId = classId;
-    }
-
-    public Long getScheduleId() {
-        return scheduleId;
-    }
-
-    public void setScheduleId(Long scheduleId) {
-        this.scheduleId = scheduleId;
-    }
-
-    public ClassEntity getaClass() {
-        return aClassEntity;
-    }
-
-    public void setaClass(ClassEntity aClassEntity) {
-        this.aClassEntity = aClassEntity;
+    public void setClassEntity(ClassEntity classEntity) {
+        this.classEntity = classEntity;
     }
 
     public Schedule getSchedule() {
