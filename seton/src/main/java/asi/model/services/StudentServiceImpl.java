@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 @Transactional
 public class StudentServiceImpl implements StudentService {
@@ -16,6 +19,16 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private UserService userService;
+
+    @Override
+    public Optional<Student> findStudentById(Long id) {
+        return studentDao.findById(id);
+    }
+
+    @Override
+    public List<Student> findAllStudents() {
+        return studentDao.findAll();
+    }
 
     @Override
     public Student createStudent(Student student) throws DuplicateInstanceException {

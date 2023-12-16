@@ -14,26 +14,22 @@ public class Inscription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long studentId;
-    private Long classId;
-
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
 
     @ManyToOne
     @JoinColumn(name = "class_id")
-    private Class aClass;
+    private ClassEntity aClassEntity;
 
     public Inscription() {
         // Default constructor
     }
 
-    public Inscription(Long studentId, Long classId, Student student, Class aClass) {
-        this.studentId = studentId;
-        this.classId = classId;
+    public Inscription(Long id, Student student, ClassEntity aClassEntity) {
+        this.id = id;
         this.student = student;
-        this.aClass = aClass;
+        this.aClassEntity = aClassEntity;
     }
 
     public Long getId() {
@@ -44,22 +40,6 @@ public class Inscription {
         this.id = id;
     }
 
-    public Long getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
-    }
-
-    public Long getClassId() {
-        return classId;
-    }
-
-    public void setClassId(Long classId) {
-        this.classId = classId;
-    }
-
     public Student getStudent() {
         return student;
     }
@@ -68,11 +48,11 @@ public class Inscription {
         this.student = student;
     }
 
-    public Class getaClass() {
-        return aClass;
+    public ClassEntity getaClassEntity() {
+        return aClassEntity;
     }
 
-    public void setaClass(Class aClass) {
-        this.aClass = aClass;
+    public void setaClassEntity(ClassEntity aClassEntity) {
+        this.aClassEntity = aClassEntity;
     }
 }
