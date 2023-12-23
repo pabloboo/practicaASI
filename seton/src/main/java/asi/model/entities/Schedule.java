@@ -11,7 +11,7 @@ import java.sql.Time;
 public class Schedule {
 
     public enum WeekDay {
-        MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY
+        LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO
     }
 
     @Id

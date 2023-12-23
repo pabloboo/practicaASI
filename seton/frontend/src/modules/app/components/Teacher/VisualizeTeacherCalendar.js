@@ -72,7 +72,7 @@ const VisualizeCalendar = () => {
         const hours = Array.from({ length: 25 }, (_, i) => {
             return `${i}:00`; // Mostrar horas en lugar de media hora
         });
-        const daysOfWeek = ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY', 'SUNDAY'];
+        const daysOfWeek = ['LUNES', 'MARTES', 'MIERCOLES', 'JUEVES', 'VIERNES', 'SABADO', 'DOMINGO'];
 
         // Función para redondear la hora hacia abajo a la media hora más cercana
         const roundDownToNearestHour = (time) => {

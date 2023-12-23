@@ -93,13 +93,13 @@ const ScheduleForm = () => {
                     <label>Week Day:</label>
                     <select value={weekDay} onChange={handleWeekDayChange}>
                         <option value="">Select a day</option>
-                        <option value="MONDAY">Lunes</option>
-                        <option value="TUESDAY">Martes</option>
-                        <option value="WEDNESDAY">Miércoles</option>
-                        <option value="THURSDAY">Jueves</option>
-                        <option value="FRIDAY">Viernes</option>
-                        <option value="SATURDAY">Sábado</option>
-                        <option value="SUNDAY">Domingo</option>
+                        <option value="LUNES">Lunes</option>
+                        <option value="MARTES">Martes</option>
+                        <option value="MIERCOLES">Miércoles</option>
+                        <option value="JUEVES">Jueves</option>
+                        <option value="VIERNES">Viernes</option>
+                        <option value="SABADO">Sábado</option>
+                        <option value="DOMINGO">Domingo</option>
                     </select>
                 </div>
                 <div>
