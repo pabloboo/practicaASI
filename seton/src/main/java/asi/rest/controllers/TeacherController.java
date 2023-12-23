@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,5 +60,11 @@ public class TeacherController {
 
         // Return the created teacher in the response
         return ResponseEntity.ok(savedTeacher);
+    }
+
+    @GetMapping("/teacher/{userId}")
+    public ResponseEntity<Teacher> getTeacherByUserId(@PathVariable Long userId) {
+        Teacher teacher = teacherService.findTeacherByUserId(userId).get();
+        return ResponseEntity.ok(teacher);
     }
 }

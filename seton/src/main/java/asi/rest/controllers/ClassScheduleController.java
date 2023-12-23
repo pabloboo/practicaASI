@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,5 +53,15 @@ public class ClassScheduleController {
         // Return the created class schedule in the response
         return ResponseEntity.ok(savedClassSchedule);
     }
+
+    @GetMapping("/getClassSchedulesByClassId/{classId}")
+    public ResponseEntity<List<ClassSchedule>> getClassSchedulesByClassId(@PathVariable Long classId) {
+        // Usa classId para recuperar los horarios de esa clase
+        List<ClassSchedule> classSchedules = classScheduleService.findClassSchedulesByClassId(classId);
+
+        // Devuelve los horarios de la clase en la respuesta
+        return ResponseEntity.ok(classSchedules);
+    }
+
 
 }

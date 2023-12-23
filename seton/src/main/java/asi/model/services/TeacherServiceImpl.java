@@ -37,6 +37,11 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
+    public Optional<Teacher> findTeacherByUserId(Long userId) {
+        return teacherDao.findByUserId(userId);
+    }
+
+    @Override
     public Teacher createTeacher(Teacher teacher) throws DuplicateInstanceException {
         if (userService.existsByUsername(teacher.getUser().getUserName())) {
             throw new DuplicateInstanceException("project.entities.user", teacher.getUser().getUserName());

@@ -2,6 +2,8 @@ package asi.model.entities;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface ClassDao extends JpaRepository<ClassEntity, Long> {
 
     /**
@@ -11,5 +13,7 @@ public interface ClassDao extends JpaRepository<ClassEntity, Long> {
      * @return true, if successful
      */
     boolean existsByGroupName(String groupName);
+
+    List<ClassEntity> findAllByTeacherId(Long teacherId);
 
 }
