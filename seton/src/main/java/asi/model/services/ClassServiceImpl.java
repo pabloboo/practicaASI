@@ -22,6 +22,11 @@ public class ClassServiceImpl implements ClassService{
     }
 
     @Override
+    public List<ClassEntity> getTeacherSchedulesByTeacherId(Long teacherId) {
+        return classDao.findAllByTeacherId(teacherId);
+    }
+
+    @Override
     public List<ClassEntity> findAllClassEntities() {
         return classDao.findAll();
     }

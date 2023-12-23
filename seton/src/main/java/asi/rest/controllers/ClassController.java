@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -55,5 +56,15 @@ public class ClassController {
         //Return the created class in the response
         return ResponseEntity.ok(savedClassEntity);
     }
+
+    @GetMapping("/teacherSchedules/{teacherId}")
+    public ResponseEntity<List<ClassEntity>> getTeacherSchedules(@PathVariable Long teacherId) {
+        // Recuperar los ClassSchedules asociados al teacherId
+        List<ClassEntity> teacherSchedules = classService.getTeacherSchedulesByTeacherId(teacherId);
+
+        // Devuelve los ClassSchedules en la respuesta
+        return ResponseEntity.ok(teacherSchedules);
+    }
+
 
 }

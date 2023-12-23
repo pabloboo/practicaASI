@@ -12,6 +12,8 @@ public interface ClassScheduleService {
 
     public Optional<ClassSchedule> findClassScheduleById(Long id);
 
+    public List<ClassSchedule> findClassSchedulesByClassId(Long classId);
+
     ClassSchedule createClassSchedule(ClassSchedule classSchedule) throws DuplicateInstanceException;
 
 }

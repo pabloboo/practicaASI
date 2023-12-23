@@ -50,25 +50,25 @@ public class ScheduleDto {
 
     public void setWeekDay(String weekDay) {
         switch (weekDay.toUpperCase()) {
-            case "MONDAY":
+            case "LUNES":
                 this.weekDay = 0;
                 break;
-            case "TUESDAY":
+            case "MARTES":
                 this.weekDay = 1;
                 break;
-            case "WEDNESDAY":
+            case "MIERCOLES":
                 this.weekDay = 2;
                 break;
-            case "THURSDAY":
+            case "JUEVES":
                 this.weekDay = 3;
                 break;
-            case "FRIDAY":
+            case "VIERNES":
                 this.weekDay = 4;
                 break;
-            case "SATURDAY":
+            case "SABADO":
                 this.weekDay = 5;
                 break;
-            case "SUNDAY":
+            case "DOMINGO":
                 this.weekDay = 6;
                 break;
             default:

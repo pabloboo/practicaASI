@@ -32,8 +32,15 @@ const Login = () => {
                 Promise.all([
                     localStorage.setItem('token', data.serviceToken),
                     localStorage.setItem('role', data.user.role)
-                ]).then(() => {
+                ]).then(async () => {
                     if (data.user.role == 'TEACHER') {
+                        const responseGetTeacher = await fetch(`api/teachers/teacher/${data.user.id}`);
+                        if (responseGetTeacher.ok) {
+                            const dataGetTeacher = await responseGetTeacher.json();
+                            Promise.all([
+                                localStorage.setItem('userId', dataGetTeacher.id)
+                            ])
+                        }
                         navigate('/teacher/home');
                     } else if (data.user.role == 'STUDENT') {
                         navigate('/student/home');

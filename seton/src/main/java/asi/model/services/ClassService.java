@@ -10,6 +10,8 @@ public interface ClassService {
 
     Optional<ClassEntity> findClassById(Long id);
 
+    List<ClassEntity> getTeacherSchedulesByTeacherId(Long teacherId);
+
     List<ClassEntity> findAllClassEntities();
 
     ClassEntity createClass(ClassEntity newClassEntity) throws DuplicateInstanceException;

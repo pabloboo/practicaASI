@@ -12,5 +12,7 @@ public interface TeacherService {
 
     public Optional<Teacher> findTeacherById(Long id);
 
+    public Optional<Teacher> findTeacherByUserId(Long userId);
+
     Teacher createTeacher(Teacher teacher) throws DuplicateInstanceException;
 }

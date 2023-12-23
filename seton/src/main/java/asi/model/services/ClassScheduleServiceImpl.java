@@ -38,6 +38,11 @@ public class ClassScheduleServiceImpl implements ClassScheduleService {
     }
 
     @Override
+    public List<ClassSchedule> findClassSchedulesByClassId(Long classId) {
+        return classScheduleDao.findClassScheduleByClassEntityId(classId);
+    }
+
+    @Override
     public ClassSchedule createClassSchedule(ClassSchedule classSchedule) throws DuplicateInstanceException {
         List<ClassSchedule> classScheduleList = classScheduleDao.findAll();
         for (ClassSchedule classScheduleIterator: classScheduleList) {
