@@ -47,4 +47,9 @@ public class InscriptionServiceImpl implements InscriptionService {
         inscription.setStudent(student);
         return inscriptionDao.save(inscription);
     }
+
+    @Override
+    public List<Inscription> findInscriptionsByStudentId(Long studentId) {
+        return inscriptionDao.findAllByStudentId(studentId);
+    }
 }
