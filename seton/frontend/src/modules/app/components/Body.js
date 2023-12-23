@@ -15,6 +15,7 @@ import InscriptionForm from "./Admin/addInscription";
 import ScheduleForm from "./Admin/addSchedule";
 import ClassScheduleForm from "./Admin/addClassSchedule";
 import VisualizeCalendar from "./Teacher/VisualizeTeacherCalendar";
+import VisualizeStudentCalendar from "./Student/VisualizeStudentCalendar";
 
 const Body = () => {
   const [loading, setLoading] = useState(true);
@@ -53,6 +54,7 @@ const Body = () => {
         {isAdmin && <Route path="/admin/addSchedule" element={<ScheduleForm/>}/>}
         {isAdmin && <Route path="/admin/addClassSchedule" element={<ClassScheduleForm/>}/>}
         {isStudent && <Route path="/student/home" element={<StudentHome/>}/>}
+        {isStudent && <Route path="/student/visualizeSchedule" element={<VisualizeStudentCalendar/>}/>}
         {isTeacher && <Route path="/teacher/home" element={<TeacherHome/>}/>}
         {isTeacher && <Route path="/teacher/visualizeSchedule" element={<VisualizeCalendar/>}/>}
         <Route path="/admin/addClass" element={<div/>} />

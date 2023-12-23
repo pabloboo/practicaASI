@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importa el CSS de Bootstrap
 
-const VisualizeCalendar = () => {
+const VisualizeStudentCalendar = () => {
     const [schedules, setSchedules] = useState([]);
 
     useEffect(() => {
-        const fetchTeacherSchedules = async () => {
+        const fetchStudentSchedules = async () => {
             try {
-                const teacherId = localStorage.getItem('userId');
+                const studentId = localStorage.getItem('userId');
                 const token = localStorage.getItem('token');
-                const response = await fetch(`api/classes/teacherSchedules/${teacherId}`, {
+                const response = await fetch(`api/classes/studentClasses/${studentId}`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -58,11 +58,11 @@ const VisualizeCalendar = () => {
                     });
                 }
             } catch (error) {
-                console.error('Error fetching teacher schedules:', error);
+                console.error('Error fetching student schedules:', error);
             }
         };
 
-        fetchTeacherSchedules();
+        fetchStudentSchedules();
     }, []);
 
     // Función para generar la tabla de horarios
@@ -126,4 +126,4 @@ const VisualizeCalendar = () => {
     );
 };
 
-export default VisualizeCalendar;
+export default VisualizeStudentCalendar;
