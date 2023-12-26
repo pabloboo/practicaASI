@@ -13,7 +13,7 @@ const Login = () => {
         ev.preventDefault();
         try {
             let endpoint = '';
-            if (userType == 'student') {
+            if (userType === 'student') {
                 endpoint = 'api/users/loginStudent';
             } else {
                 endpoint = 'api/users/loginTeacher'
@@ -33,7 +33,7 @@ const Login = () => {
                     localStorage.setItem('token', data.serviceToken),
                     localStorage.setItem('role', data.user.role)
                 ]).then(async () => {
-                    if (data.user.role == 'TEACHER') {
+                    if (data.user.role === 'TEACHER') {
                         const responseGetTeacher = await fetch(`api/teachers/teacher/${data.user.id}`);
                         if (responseGetTeacher.ok) {
                             const dataGetTeacher = await responseGetTeacher.json();
@@ -42,7 +42,7 @@ const Login = () => {
                             ])
                         }
                         navigate('/teacher/home');
-                    } else if (data.user.role == 'STUDENT') {
+                    } else if (data.user.role === 'STUDENT') {
                         navigate('/student/home');
                     }
                 });

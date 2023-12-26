@@ -46,7 +46,7 @@ const ClassScheduleForm = () => {
                 const response = await fetch('api/schedules');
                 if (response.ok) {
                     const data = await response.json();
-                    console.log(schedules);
+                    console.log(data); // Loguea los datos para verificar si se están recuperando correctamente
                     setSchedules(data);
                 } else {
                     console.error('Failed to fetch schedules');
@@ -58,7 +58,8 @@ const ClassScheduleForm = () => {
 
         fetchClassEntities();
         fetchSchedules();
-    }, []);
+    }, [schedules]); // Agrega 'schedules' al array de dependencias
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();

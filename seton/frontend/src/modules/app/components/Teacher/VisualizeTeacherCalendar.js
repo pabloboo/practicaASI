@@ -21,7 +21,7 @@ const VisualizeCalendar = () => {
                     const data = await response.json();
 
                     // Formatear los datos obtenidos para mostrarlos en el calendario
-                    const promises = data.map(async (classEntity) => {
+                    data.map(async (classEntity) => {
                         const classSchedulesResponse = await fetch(`api/classSchedules/getClassSchedulesByClassId/${classEntity.id}`, {
                             method: 'GET',
                             headers: {
@@ -97,7 +97,7 @@ const VisualizeCalendar = () => {
                         {daysOfWeek.map((day) => {
                             const schedule = schedules.find(
                                 (schedule) =>
-                                    schedule.weekDay == day &&
+                                    schedule.weekDay === day &&
                                     moment(roundDownToNearestHour(schedule.startTime), 'HH:mm').isSameOrBefore(moment(hour, 'HH:mm')) &&
                                     moment(schedule.endTime, 'HH:mm').isAfter(moment(hour, 'HH:mm'))
                             );
