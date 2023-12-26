@@ -42,7 +42,8 @@ const Body = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Login />}>
+      <Route path="/">
+        <Route index exact element={<Login />} />
         <Route path="/test" element={<Test />} />
         <Route path="/admin" element={<AdminLogin />} />
         {isAdmin && <Route path="/admin/home" element={<AdminHome/>}/>}
