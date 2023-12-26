@@ -45,6 +45,7 @@ const Body = () => {
       <Route path="/">
         <Route index exact element={<Login />} />
         <Route path="/test" element={<Test />} />
+        <Route path="/seton" element={<Login />} />
         <Route path="/admin" element={<AdminLogin />} />
         {isAdmin && <Route path="/admin/home" element={<AdminHome/>}/>}
         {isAdmin && <Route path="/admin/addTeacher" element={<TeacherForm/>}/>}
