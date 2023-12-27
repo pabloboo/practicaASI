@@ -15,4 +15,7 @@ public interface ClassService {
     List<ClassEntity> findAllClassEntities();
 
     ClassEntity createClass(ClassEntity newClassEntity) throws DuplicateInstanceException;
+
+    ClassEntity modifyClass(ClassEntity modifiedClassEntity);
+
 }
