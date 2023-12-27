@@ -1,6 +1,9 @@
 package asi.rest.controllers;
 
+import asi.model.common.exceptions.CannotCreateTeacherException;
 import asi.model.common.exceptions.DuplicateInstanceException;
+import asi.model.entities.Inscription;
+import asi.model.entities.Student;
 import asi.model.entities.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -54,7 +57,7 @@ public class TeacherController {
         Teacher savedTeacher = null;
         try {
             savedTeacher = teacherService.createTeacher(newTeacher);
-        } catch (DuplicateInstanceException e) {
+        } catch (DuplicateInstanceException | CannotCreateTeacherException e) {
             e.printStackTrace();
         }
 
@@ -67,4 +70,16 @@ public class TeacherController {
         Teacher teacher = teacherService.findTeacherByUserId(userId).get();
         return ResponseEntity.ok(teacher);
     }
+
+    @GetMapping("/teacher/inscriptions/{teacherId}")
+    public ResponseEntity<?> getInscriptionsByTeacher(@PathVariable Long teacherId) {
+        List<Inscription> inscriptions = teacherService.getInscriptionsByTeacher(teacherId);
+
+        if (inscriptions.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(inscriptions);
+        }
+    }
+
 }
