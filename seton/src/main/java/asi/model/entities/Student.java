@@ -1,12 +1,8 @@
 package asi.model.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Student {
@@ -21,6 +17,10 @@ public class Student {
     @OneToOne
     @JoinColumn(name = "user_id")
     private Users user;
+
+    @OneToMany
+    private List<Inscription> inscription;
+
 
     public Student() {
         // Default constructor

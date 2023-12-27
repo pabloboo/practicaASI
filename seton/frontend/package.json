@@ -2,6 +2,7 @@
   "name": "seton",
   "version": "1.0.0",
   "private": true,
+  "homepage": "/seton",
   "dependencies": {
     "jest-standard-reporter": "^2.0.0",
     "moment": "^2.29.4",
