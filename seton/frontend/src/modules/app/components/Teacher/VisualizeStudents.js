@@ -30,28 +30,48 @@ const StudentsList = () => {
     }, []);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div>Cargando...</div>;
     }
 
-    if (noContent) {
-        return <div>No students found for this teacher.</div>;
-    }
+
+    // Organizar alumnos por grupo
+    const groupedStudents = inscriptions.reduce((acc, inscription) => {
+        const groupName = inscription?.aClassEntity?.groupName;
+
+        if (!acc[groupName]) {
+            acc[groupName] = [];
+        }
+
+        acc[groupName].push(inscription);
+
+        return acc;
+    }, {});
 
     return (
-        <div>
-            <h2>Students</h2>
-            {inscriptions.map((inscription) => (
-                <div key={inscription.id}>
-                    <h3>{inscription.classEntity.groupName}</h3>
-                    <ul>
-                        {inscription.classEntity.students.map((student) => (
-                            <li key={student.id}>{student.name} - {student.grade}</li>
-                        ))}
-                    </ul>
+        <div className="container mt-5">
+            <h2 className="text-center mb-4">Estudiantes</h2>
+            {noContent ? (
+                <div className="alert alert-warning" role="alert">
+                    No se han encontrado alumnos para este profesor.
                 </div>
-            ))}
+            ) : (
+                <div>
+                    {Object.entries(groupedStudents).map(([groupName, students]) => (
+                        <div key={groupName} className="card bg-light border-dark mb-4">
+                            <h4 className="card-header">{groupName}</h4>
+                            <ul className="list-group list-group-flush">
+                                {students.map((student) => (
+                                    <li key={student?.aClassEntity?.student?.id} className="list-group-item">
+                                        {student?.student?.user?.firstName + " " + student?.student?.user?.lastName}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
-};
 
+}
 export default StudentsList;
