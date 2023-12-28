@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Importa el CSS de Bootstrap
 
 const VisualizeStudentCalendar = () => {
     const [schedules, setSchedules] = useState([]);
-
+    const [language, setLanguage] = useState("")
+    const [group, setGroup] = useState("")
     useEffect(() => {
         const fetchStudentSchedules = async () => {
             try {
@@ -19,7 +20,11 @@ const VisualizeStudentCalendar = () => {
 
                 if (response.ok) {
                     const data = await response.json();
-
+                    setLanguage(data[0]["language"]["name"])
+                    setGroup(data[0]["groupName"])
+                    console.log(data)
+                    console.log(language)
+                    console.log(group)
                     // Formatear los datos obtenidos para mostrarlos en el calendario
                     data.map(async (classEntity) => {
                         const classSchedulesResponse = await fetch(`api/classSchedules/getClassSchedulesByClassId/${classEntity.id}`, {
@@ -104,7 +109,7 @@ const VisualizeStudentCalendar = () => {
 
                             return (
                                 <td key={`${day}-${hour}`} className="align-middle">
-                                    {schedule ? `${schedule.classroom} (${moment(schedule.startTime, 'HH:mm').format('HH:mm')}-${moment(schedule.endTime, 'HH:mm').format('HH:mm')})` : ''}
+                                    {schedule ? `${language}, ${group}, ${schedule.classroom} (${moment(schedule.startTime, 'HH:mm').format('HH:mm')}-${moment(schedule.endTime, 'HH:mm').format('HH:mm')})` : ''}
                                 </td>
                             );
                         })}
