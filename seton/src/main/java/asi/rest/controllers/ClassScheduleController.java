@@ -8,12 +8,7 @@ import asi.model.services.ScheduleService;
 import asi.rest.dtos.ClassScheduleDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -49,6 +44,20 @@ public class ClassScheduleController {
         } catch (DuplicateInstanceException e) {
             e.printStackTrace();
         }
+
+        // Return the created class schedule in the response
+        return ResponseEntity.ok(savedClassSchedule);
+    }
+    @PutMapping("/modify")
+    public ResponseEntity<ClassSchedule> modifyClassSchedule(@ModelAttribute ClassScheduleDto classScheduleDto) {
+        ClassSchedule modifiedClassSchedule = classScheduleService.findClassScheduleById(classScheduleDto.getClassId()).get();
+        modifiedClassSchedule.setSchedule(scheduleService.findScheduleById(classScheduleDto.getScheduleId()).get());
+//        modifiedClassSchedule.setClassEntity(classService.findClassById(classScheduleDto.getClassId()).get());
+
+        //Call the service method to save the new ClassSchedule
+        ClassSchedule savedClassSchedule = null;
+        savedClassSchedule = classScheduleService.modifyClassSchedule(modifiedClassSchedule);
+
 
         // Return the created class schedule in the response
         return ResponseEntity.ok(savedClassSchedule);

@@ -34,6 +34,12 @@ const AdminHome = () => {
     const handleCrearClassSchedule = () => {
         navigate('/admin/addClassSchedule');
     };
+    const handleModificarClass = () => {
+        navigate('/admin/modifyClass');
+    };
+    const handleModificarClassSchedule = () => {
+        navigate('/admin/modifyClassSchedule');
+    };
 
     return (
         <div className="container mt-5">
@@ -74,6 +80,18 @@ const AdminHome = () => {
                     className="btn btn-primary"
                 >
                     Asignar horario a clase
+                </button>
+                <button
+                    onClick={() => handleModificarClass()}
+                    className="btn btn-primary"
+                >
+                    Modificar clase
+                </button>
+                <button
+                    onClick={() => handleModificarClassSchedule()}
+                    className="btn btn-primary"
+                >
+                    Modificar horario de clase
                 </button>
             </div>
             <button onClick={handleLogout} className="btn btn-danger mt-3">

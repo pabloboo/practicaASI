@@ -56,4 +56,11 @@ public class ClassScheduleServiceImpl implements ClassScheduleService {
         ClassEntity classEntity = classDao.findById(classSchedule.getClassEntity().getId()).get();
         return classScheduleDao.save(classSchedule);
     }
+    public ClassSchedule modifyClassSchedule(ClassSchedule classSchedule) {
+        List<ClassSchedule> classScheduleList = classScheduleDao.findAll();
+
+        Schedule schedule = scheduleDao.findById(classSchedule.getSchedule().getId()).get();
+        ClassEntity classEntity = classDao.findById(classSchedule.getClassEntity().getId()).get();
+        return classScheduleDao.save(classSchedule);
+    }
 }

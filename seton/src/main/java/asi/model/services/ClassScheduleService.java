@@ -16,4 +16,6 @@ public interface ClassScheduleService {
 
     ClassSchedule createClassSchedule(ClassSchedule classSchedule) throws DuplicateInstanceException;
 
+    ClassSchedule modifyClassSchedule(ClassSchedule classSchedule);
+
 }

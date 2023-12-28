@@ -38,4 +38,9 @@ public class ClassServiceImpl implements ClassService{
         }
         return classDao.save(newClassEntity);
     }
+    @Override
+    public ClassEntity modifyClass(ClassEntity modifyClassEntity){
+        return classDao.save(modifyClassEntity);
+    }
+
 }

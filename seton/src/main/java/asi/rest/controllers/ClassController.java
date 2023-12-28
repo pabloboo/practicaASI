@@ -10,12 +10,7 @@ import asi.model.services.TeacherService;
 import asi.rest.dtos.ClassDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,7 +57,25 @@ public class ClassController {
         //Return the created class in the response
         return ResponseEntity.ok(savedClassEntity);
     }
+    @PutMapping("/modify")
+    public ResponseEntity<ClassEntity> modifyClass(@ModelAttribute ClassDto classDto) {
+//        num= float("a")
+        ClassEntity ClassEntity = classService.findClassById(Long.parseLong(classDto.getGroupName())).get();
+//        ClassEntity.setId(float("a"));
+//        ClassEntity.setGroupName(classDto.getGroupName());
+        ClassEntity.setLevel(classDto.getLevel());
+        ClassEntity.setTeacher(teacherService.findTeacherById(classDto.getTeacherId()).get());
+        ClassEntity.setLanguage(languageService.findLanguageById(classDto.getLanguageId()).get());
 
+        // Call the service method to save the modified class
+        ClassEntity savedClassEntity = null;
+
+        savedClassEntity = classService.modifyClass(ClassEntity);
+
+
+        //Return the modified class in the response
+        return ResponseEntity.ok(savedClassEntity);
+    }
     @GetMapping("/teacherSchedules/{teacherId}")
     public ResponseEntity<List<ClassEntity>> getTeacherSchedules(@PathVariable Long teacherId) {
         // Recuperar los ClassSchedules asociados al teacherId
