@@ -26,6 +26,9 @@ mvn clean install
 mvn spring-boot:run
 ```
 
+Si la ejecución de mvn clean install da fallos por la falta de dependencias de frontend es necesario añadir primero esas
+dependencias con yarn (apartado otras dependencias).
+
 Configuración frontend:
 
 ```bash
@@ -56,23 +59,13 @@ yarn add @popperjs/core
 yarn add react-datepicker moment
 ```
 
-## Flujo de trabajo
-En el proyecto de github entra en una issue, asignate la issue y haz click en 'create branch' 
-para comenzar el desarrollo de esa issue. En local:
-```bash
-git fetch origin
-git checkout <nombre-rama>
-```
+## Funcionalidades
+Url para acceder a la parte de profesor/estudiante
+(una vez creada alguna cuenta en la parte de administrador): http://localhost:3000/
 
-Hacer el desarrollo de la funcionalidad en esa rama y al terminar mergearla con main haciendo
-una pull request.
+Url para acceder a la parte de admin: http://localhost:3000/admin
 
-### Apuntes interesantes para el desarrollo:
-
-- src/main/java/asi/model: localización de los ficheros para implementar el backend de la aplicación.
-- frontend/src/modules/app/components: localización de los ficheros que conforman las pantallas del frontend. 
-En el fichero Body.js se pueden añadir nuevas rutas.
-- SecurityConfig.java: es necesario añadir las APIs en este fichero para que se puedan realizar las peticiones.
+usuario: admin, contraseña: admin
 
 ## Diagrama base de datos
 ![](db.png)
@@ -85,10 +78,3 @@ En el fichero Body.js se pueden añadir nuevas rutas.
 - Class: clase.
 - ClassSchedule: relación entre clase y horario.
 - Inscription: relación entre clase y estudiante.
-## Funcionalidades
-Url para acceder a la parte de profesor/estudiante 
-(una vez creada alguna cuenta en la parte de administrador): http://localhost:3000/
-
-Url para acceder a la parte de admin: http://localhost:3000/admin
-
-u: admin, c: admin
