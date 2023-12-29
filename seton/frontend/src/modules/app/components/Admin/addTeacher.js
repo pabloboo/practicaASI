@@ -100,63 +100,63 @@ const TeacherForm = () => {
             <form onSubmit={handleSubmit} encType="multipart/form-data">
                 <div className="mb-3">
                     <label htmlFor="userName" className="form-label">
-                        Username
+                        Nombre de usuario
                     </label>
                     <input
                         type="text"
                         className="form-control"
                         id="userName"
                         name="userName"
-                        placeholder="Username"
+                        placeholder="Nombre de usuario"
                         value={teacherData.userName}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">
-                        Password
+                        Contraseña
                     </label>
                     <input
                         type="password"
                         className="form-control"
                         id="password"
                         name="password"
-                        placeholder="Password"
+                        placeholder="Contraseña"
                         value={teacherData.password}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="firstName" className="form-label">
-                        First Name
+                        Nombre
                     </label>
                     <input
                         type="text"
                         className="form-control"
                         id="firstName"
                         name="firstName"
-                        placeholder="First Name"
+                        placeholder="Nombre"
                         value={teacherData.firstName}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="lastName" className="form-label">
-                        Last Name
+                        Apellidos
                     </label>
                     <input
                         type="text"
                         className="form-control"
                         id="lastName"
                         name="lastName"
-                        placeholder="Last Name"
+                        placeholder="Apellidos"
                         value={teacherData.lastName}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="image" className="form-label">
-                        Image
+                        Imagen
                     </label>
                     <input
                         type="file"
@@ -168,7 +168,7 @@ const TeacherForm = () => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="languageId" className="form-label">
-                        Language
+                        Idioma
                     </label>
                     <select
                         className="form-control"
@@ -185,7 +185,7 @@ const TeacherForm = () => {
                     </select>
                 </div>
                 <button type="submit" className="btn btn-primary">
-                    Create Teacher
+                    Añadir profesor
                 </button>
             </form>
             <div className="row justify-content-center">

@@ -66,76 +66,76 @@ const StudentForm = () => {
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="userName" className="form-label">
-                        Username
+                        Nombre de usuario
                     </label>
                     <input
                         type="text"
                         className="form-control"
                         id="userName"
                         name="userName"
-                        placeholder="Username"
+                        placeholder="Nombre de usuario"
                         value={studentData.userName}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password" className="form-label">
-                        Password
+                        Contraseña
                     </label>
                     <input
                         type="password"
                         className="form-control"
                         id="password"
                         name="password"
-                        placeholder="Password"
+                        placeholder="Contraseña"
                         value={studentData.password}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="firstName" className="form-label">
-                        First Name
+                        Nombre
                     </label>
                     <input
                         type="text"
                         className="form-control"
                         id="firstName"
                         name="firstName"
-                        placeholder="First Name"
+                        placeholder="Nombre"
                         value={studentData.firstName}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="lastName" className="form-label">
-                        Last Name
+                        Apellidos
                     </label>
                     <input
                         type="text"
                         className="form-control"
                         id="lastName"
                         name="lastName"
-                        placeholder="Last Name"
+                        placeholder="Apellidos"
                         value={studentData.lastName}
                         onChange={handleChange}
                     />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="additionalNotes" className="form-label">
-                        Additional notes
+                        Notas adicionales
                     </label>
                     <textarea
                         className="form-control"
                         id="additionalNotes"
                         name="additionalNotes"
-                        placeholder="Additional notes"
+                        placeholder="Notas adicionales"
                         value={studentData.additionalNotes}
                         onChange={handleChange}
                         rows={4}
                     />
                 </div>
                 <button type="submit" className="btn btn-primary">
-                    Create Student
+                    Añadir estudiante
                 </button>
             </form>
             <div className="row justify-content-center">

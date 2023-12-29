@@ -161,7 +161,7 @@ const ClassForm = () => {
 
                 <div className="mb-3">
                     <label htmlFor="languageId" className="form-label">
-                        Language
+                        Idioma
                     </label>
                     <select
                         className="form-control"

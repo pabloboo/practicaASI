@@ -12,6 +12,13 @@ const TeacherHome = () => {
     const handleVerAlumnos = () => {
         navigate('/teacher/visualizeStudents');
     };
+
+    const handleLogout = () => {
+        localStorage.removeItem('token'); // Elimina el token del localStorage
+        localStorage.removeItem('role'); // Elimina el rol del localStorage
+        navigate('/'); // Redirige al usuario a la página de login
+    };
+
     return (
         <div className="container mt-5">
             <h1 className="mb-4">Bienvenido al Inicio del Profesor</h1>
@@ -28,6 +35,13 @@ const TeacherHome = () => {
                 >
                     Ver Alumnos
                 </button>
+            </div>
+            <div className="row mt-3 justify-content-center">
+                <div className="col-md-4">
+                    <button onClick={handleLogout} className="btn btn-danger w-100">
+                        Cerrar sesión
+                    </button>
+                </div>
             </div>
         </div>
     );

@@ -63,10 +63,10 @@ const ScheduleForm = () => {
 
     return (
         <div>
-            <h2>Create Schedule</h2>
+            <h2>Crer horario</h2>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label>Start Time:</label>
+                    <label>Hora de inicio:</label>
                     <DatePicker
                         selected={startTime}
                         onChange={handleStartDateChange}
@@ -78,7 +78,7 @@ const ScheduleForm = () => {
                     />
                 </div>
                 <div>
-                    <label>End Time:</label>
+                    <label>Hora de fin:</label>
                     <DatePicker
                         selected={endTime}
                         onChange={handleEndDateChange}
@@ -90,7 +90,7 @@ const ScheduleForm = () => {
                     />
                 </div>
                 <div>
-                    <label>Week Day:</label>
+                    <label>Día de la semana:</label>
                     <select value={weekDay} onChange={handleWeekDayChange}>
                         <option value="">Select a day</option>
                         <option value="LUNES">Lunes</option>
@@ -103,7 +103,7 @@ const ScheduleForm = () => {
                     </select>
                 </div>
                 <div>
-                    <label>Classroom:</label>
+                    <label>Aula:</label>
                     <input
                         type="text"
                         value={classroom}
@@ -111,7 +111,7 @@ const ScheduleForm = () => {
                     />
                 </div>
                 <button type="submit" className="btn btn-primary">
-                    Create Horario
+                    Crear horario
                 </button>
             </form>
             <div className="row justify-content-center">

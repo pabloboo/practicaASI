@@ -44,59 +44,65 @@ const AdminHome = () => {
     return (
         <div className="container mt-5">
             <h1 className="mb-4 text-center">Administrador</h1>
-            <div className="d-flex justify-content-between">
-                <button
-                    onClick={() => handleCrearProfesor()}
-                    className="btn btn-primary"
-                >
-                    Crear cuenta profesor
-                </button>
-                <button
-                    onClick={() => handleCrearEstudiante()}
-                    className="btn btn-primary"
-                >
-                    Crear cuenta estudiante
-                </button>
-                <button
-                    onClick={() => handleCrearClase()}
-                    className="btn btn-primary"
-                >
-                    Crear clase
-                </button>
-                <button
-                    onClick={() => handleCrearInscription()}
-                    className="btn btn-primary"
-                >
-                    Crear inscripción
-                </button>
-                <button
-                    onClick={() => handleCrearSchedule()}
-                    className="btn btn-primary"
-                >
-                    Crear horario
-                </button>
-                <button
-                    onClick={() => handleCrearClassSchedule()}
-                    className="btn btn-primary"
-                >
-                    Asignar horario a clase
-                </button>
-                <button
-                    onClick={() => handleModificarClass()}
-                    className="btn btn-primary"
-                >
-                    Modificar clase
-                </button>
-                <button
-                    onClick={() => handleModificarClassSchedule()}
-                    className="btn btn-primary"
-                >
-                    Modificar horario de clase
-                </button>
+            <div className="row justify-content-center">
+                <div className="col-md-8">
+                    <div className="row mb-3">
+                        <div className="col">
+                            <button onClick={handleCrearProfesor} className="btn btn-primary w-100">
+                                Crear cuenta profesor
+                            </button>
+                        </div>
+                        <div className="col">
+                            <button onClick={handleCrearEstudiante} className="btn btn-primary w-100">
+                                Crear cuenta estudiante
+                            </button>
+                        </div>
+                        <div className="col">
+                            <button onClick={handleCrearClase} className="btn btn-primary w-100">
+                                Crear clase
+                            </button>
+                        </div>
+                        {/* Otros botones similares */}
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <button onClick={handleCrearInscription} className="btn btn-primary w-100">
+                                Crear inscripción
+                            </button>
+                        </div>
+                        <div className="col">
+                            <button onClick={handleCrearSchedule} className="btn btn-primary w-100">
+                                Crear horario
+                            </button>
+                        </div>
+                        <div className="col">
+                            <button onClick={handleCrearClassSchedule} className="btn btn-primary w-100">
+                                Asignar horario a clase
+                            </button>
+                        </div>
+                        {/* Otros botones similares */}
+                    </div>
+                    <div className="row mt-3">
+                        <div className="col">
+                            <button onClick={handleModificarClass} className="btn btn-primary w-100">
+                                Modificar clase
+                            </button>
+                        </div>
+                        <div className="col">
+                            <button onClick={handleModificarClassSchedule} className="btn btn-primary w-100">
+                                Modificar horario de clase
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <button onClick={handleLogout} className="btn btn-danger mt-3">
-                Logout
-            </button>
+            <div className="row mt-3 justify-content-center">
+                <div className="col-md-4">
+                    <button onClick={handleLogout} className="btn btn-danger w-100">
+                        Cerrar sesión
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };
