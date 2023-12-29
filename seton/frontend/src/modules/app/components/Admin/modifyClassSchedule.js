@@ -108,7 +108,7 @@ const ModifyClassScheduleForm = () => {
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="classScheduleId" className="form-label">
-                        Horarios de Clase
+                        Horario de clase actual
                     </label>
                     <select
                         className="form-control"

@@ -8,7 +8,8 @@ const ModifyClassForm = () => {
     const [errorMessage, setErrorMessage] = useState('');
 
     const [classData, setClassData] = useState({
-        groupName: '1',
+        groupId: '1',
+        groupName: '',
         level: '',
         teacherId: '1',
         languageId: '1'
@@ -32,10 +33,29 @@ const ModifyClassForm = () => {
         const selectedTeacherId = e.target.value;
         setClassData({ ...classData, teacherId: selectedTeacherId });
     };
+
     const handleClassEntityChange = (e) => {
         const selectedClassEntityId = e.target.value;
-        setClassData({ ...classData, classEntityId: selectedClassEntityId });
+
+        // Find the selected classEntity object from classEntities array
+        const selectedClassEntity = classEntities.find(
+            (entity) => entity.id == selectedClassEntityId
+        );
+
+        if (selectedClassEntity) {
+            // Update classData with the selected classEntity information
+            setClassData({
+                ...classData,
+                groupId: selectedClassEntityId,
+                groupName: selectedClassEntity.groupName,
+                level: selectedClassEntity.level,
+                teacherId: selectedClassEntity.teacher.id,
+                languageId: selectedClassEntity.language.id,
+            });
+            console.log(selectedClassEntity);
+        }
     };
+
 
     useEffect(() => {
         // Fetch languages from the server
@@ -67,12 +87,28 @@ const ModifyClassForm = () => {
                 console.error('Error fetching teachers:', error);
             }
         };
+
         const fetchClassEntities = async () => {
             try {
                 const response = await fetch('api/classes');
                 if (response.ok) {
                     const data = await response.json();
                     setClassEntities(data);
+
+                    const selectedClassEntityId = 1;
+                    // Find the selected classEntity object from classEntities array
+                    const selectedClassEntity = data.find(
+                        (entity) => entity.id == selectedClassEntityId
+                    );
+                    // Update classData with the selected classEntity information
+                    setClassData({
+                        ...classData,
+                        groupId: selectedClassEntityId,
+                        groupName: selectedClassEntity.groupName,
+                        level: selectedClassEntity.level,
+                        teacherId: selectedClassEntity.teacher.id,
+                        languageId: selectedClassEntity.language.id,
+                    });
                 } else {
                     console.error('Failed to fetch classes');
                 }
@@ -94,9 +130,11 @@ const ModifyClassForm = () => {
             formData.append('level', classData.level);
             formData.append('teacherId', classData.teacherId);
             formData.append('languageId', classData.languageId);
+            console.log(classData);
+            console.log(formData);
 
             const token = localStorage.getItem('token');
-            const response = await fetch('api/classes/modify', {
+            const response = await fetch(`api/classes/modify/${classData.groupId}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -146,6 +184,21 @@ const ModifyClassForm = () => {
                             </option>
                         ))}
                     </select>
+                </div>
+
+                <div className="mb-3">
+                    <label htmlFor="groupName" className="form-label">
+                        Nombre del grupo
+                    </label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="groupName"
+                        name="groupName"
+                        placeholder="Nombre del grupo"
+                        value={classData.groupName}
+                        onChange={handleChange}
+                    />
                 </div>
 
                 <div className="mb-3">

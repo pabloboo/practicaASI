@@ -57,25 +57,28 @@ public class ClassController {
         //Return the created class in the response
         return ResponseEntity.ok(savedClassEntity);
     }
-    @PutMapping("/modify")
-    public ResponseEntity<ClassEntity> modifyClass(@ModelAttribute ClassDto classDto) {
-//        num= float("a")
-        ClassEntity ClassEntity = classService.findClassById(Long.parseLong(classDto.getGroupName())).get();
-//        ClassEntity.setId(float("a"));
-//        ClassEntity.setGroupName(classDto.getGroupName());
-        ClassEntity.setLevel(classDto.getLevel());
-        ClassEntity.setTeacher(teacherService.findTeacherById(classDto.getTeacherId()).get());
-        ClassEntity.setLanguage(languageService.findLanguageById(classDto.getLanguageId()).get());
 
-        // Call the service method to save the modified class
-        ClassEntity savedClassEntity = null;
+    @PutMapping("/modify/{classId}")
+    public ResponseEntity<ClassEntity> modifyClass(@PathVariable Long classId, @ModelAttribute ClassDto classDto) {
+        ClassEntity classEntity = classService.findClassById(classId).orElse(null);
 
-        savedClassEntity = classService.modifyClass(ClassEntity);
+        if (classEntity != null) {
+            classEntity.setGroupName(classDto.getGroupName());
+            classEntity.setLevel(classDto.getLevel());
+            classEntity.setTeacher(teacherService.findTeacherById(classDto.getTeacherId()).orElse(null));
+            classEntity.setLanguage(languageService.findLanguageById(classDto.getLanguageId()).orElse(null));
 
+            // Call the service method to save the modified class
+            ClassEntity savedClassEntity = classService.modifyClass(classEntity);
 
-        //Return the modified class in the response
-        return ResponseEntity.ok(savedClassEntity);
+            // Return the modified class in the response
+            return ResponseEntity.ok(savedClassEntity);
+        } else {
+            // Return a response indicating that the class with the given ID was not found
+            return ResponseEntity.notFound().build();
+        }
     }
+
     @GetMapping("/teacherSchedules/{teacherId}")
     public ResponseEntity<List<ClassEntity>> getTeacherSchedules(@PathVariable Long teacherId) {
         // Recuperar los ClassSchedules asociados al teacherId
