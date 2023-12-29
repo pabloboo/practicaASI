@@ -21,7 +21,7 @@ const TeacherHome = () => {
 
     return (
         <div className="container mt-5">
-            <h1 className="mb-4">Bienvenido al Inicio del Profesor</h1>
+            <h1 className="mb-4 text-center">Bienvenido al Inicio del Profesor</h1>
             <div className="d-flex justify-content-between">
                 <button
                     onClick={() => handleVerHorario()}

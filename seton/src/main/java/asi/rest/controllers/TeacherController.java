@@ -43,7 +43,7 @@ public class TeacherController {
         // Sample conversion from DTO to entity
         Users users = new Users();
         Teacher newTeacher = new Teacher();
-        users.setUserName(teacherDto.getFirstName());
+        users.setUserName(teacherDto.getUserName());
         users.setPassword(teacherDto.getPassword());
         users.setFirstName(teacherDto.getFirstName());
         users.setLastName(teacherDto.getLastName());

@@ -37,23 +37,44 @@ public class InitialUserLoader implements CommandLineRunner {
         }
 
         // Check if the English language already exists
-        if (!languageService.existsByName("English")) {
+        if (!languageService.existsByName("Inglés")) {
             // Create an initial language if it doesn't exist
             Language language = new Language();
-            language.setName("English");
-            language.setDescription("English language");
+            language.setName("Inglés");
+            language.setDescription("Idioma inglés");
 
             languageService.createLanguage(language); // Persist the language
         }
 
-        // Check if the Spanish language already exists
-        if (!languageService.existsByName("Spanish")) {
+        // Check if the German language already exists
+        if (!languageService.existsByName("Alemán")) {
             // Create an initial language if it doesn't exist
             Language language = new Language();
-            language.setName("Spanish");
-            language.setDescription("Spanish language");
+            language.setName("Alemán");
+            language.setDescription("Idioma alemán");
 
             languageService.createLanguage(language); // Persist the language
         }
+
+        // Check if the French language already exists
+        if (!languageService.existsByName("Francés")) {
+            // Create an initial language if it doesn't exist
+            Language language = new Language();
+            language.setName("Francés");
+            language.setDescription("Idioma francés");
+
+            languageService.createLanguage(language); // Persist the language
+        }
+
+        // Check if the Chineese language already exists
+        if (!languageService.existsByName("Chino mandarín")) {
+            // Create an initial language if it doesn't exist
+            Language language = new Language();
+            language.setName("Chino mandarín");
+            language.setDescription("Idioma chino mandarín");
+
+            languageService.createLanguage(language); // Persist the language
+        }
+
     }
 }

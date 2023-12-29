@@ -33,7 +33,7 @@ public class StudentController {
         // Conversion from DTO to entity
         Users users = new Users();
         Student newStudent = new Student();
-        users.setUserName(studentDto.getFirstName());
+        users.setUserName(studentDto.getUserName());
         users.setPassword(studentDto.getPassword());
         users.setFirstName(studentDto.getFirstName());
         users.setLastName(studentDto.getLastName());

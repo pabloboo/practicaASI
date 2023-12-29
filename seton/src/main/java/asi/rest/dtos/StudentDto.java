@@ -4,6 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class StudentDto {
 
+    private String userName;
     private String firstName;
     private String lastName;
     private String password;
@@ -13,11 +14,20 @@ public class StudentDto {
         super();
     }
 
-    public StudentDto(String firstName, String lastName, String password, String additionalNotes) {
+    public StudentDto(String userName, String firstName, String lastName, String password, String additionalNotes) {
+        this.userName = userName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
         this.additionalNotes = additionalNotes;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getFirstName() {
